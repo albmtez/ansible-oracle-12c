@@ -1,0 +1,16 @@
+################################################################################
+# Linux configuration and Oracle Database 12c install.
+# Supports version 12.1.0.2
+################################################################################
+---
+- name: Configure Oracle Linux 7 with Oracle Database 12c
+  hosts: oradb
+  become: True
+  vars_files:
+    - infra-vars.yml
+    - db-vars.yml
+    - secrets.yml
+  roles:
+    - role: linux-config
+    - role: oracle-install
+      become_user: '{{ oracle_user }}'
